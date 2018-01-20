@@ -4,7 +4,7 @@ function version {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  local ver_certbot="0.0.1"
+  local ver_certbot="$(certbot --version 2>/dev/null | awk '{print $2}' || true)"
   jq -n --arg certbot "$ver_certbot" '{certbot: $certbot}'
 }
 
